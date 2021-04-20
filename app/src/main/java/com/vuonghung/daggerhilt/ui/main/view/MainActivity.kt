@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        mainViewModel.getUsers2().observe(this, Observer {
+        mainViewModel.getUsers().observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         mainViewModel = ViewModelProviders.of(
             this,
-//            ViewModelFactory(ApiHelperImpl(RetrofitBuilder.apiService))
+            ViewModelFactory(ApiHelperImpl(RetrofitBuilder.apiService))
         ).get(MainViewModel::class.java)
     }
 }

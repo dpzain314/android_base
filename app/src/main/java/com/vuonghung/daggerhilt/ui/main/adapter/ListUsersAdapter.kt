@@ -14,10 +14,10 @@ class ListUsersAdapter(
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewUserName: TextView = itemView.findViewById(R.id.textViewUserName)
-        private val textViewUserEmail: TextView = itemView.findViewById(R.id.textViewUserName)
+        private val textViewUserPhone: TextView = itemView.findViewById(R.id.textViewUserPhone)
         fun bind(user: User) {
             textViewUserName.text = user.name
-            textViewUserEmail.text = user.phone
+            textViewUserPhone.text = user.phone
         }
     }
 

@@ -1,16 +1,17 @@
 package com.vuonghung.daggerhilt.data.api
 
+import com.vuonghung.daggerhilt.BuildConfig
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://5e510330f2c0d300147c034c.mockapi.io/"
+    private const val BASE_URL = BuildConfig.BASE_URL
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build() //Doesn't require the adapter
     }
 
