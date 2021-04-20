@@ -11,20 +11,21 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vuonghung.daggerhilt.R
-import com.vuonghung.daggerhilt.data.api.ApiHelper
+import com.vuonghung.daggerhilt.data.api.ApiHelperImpl
 import com.vuonghung.daggerhilt.data.api.RetrofitBuilder
 import com.vuonghung.daggerhilt.data.model.User
 import com.vuonghung.daggerhilt.ui.base.ViewModelFactory
-import com.vuonghung.daggerhilt.ui.main.adapter.MainAdapter
+import com.vuonghung.daggerhilt.ui.main.adapter.ListUsersAdapter
 import com.vuonghung.daggerhilt.ui.main.viewmodel.MainViewModel
 import com.vuonghung.daggerhilt.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var adapter: MainAdapter
+    private lateinit var adapter: ListUsersAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MainAdapter(arrayListOf())
+        adapter = ListUsersAdapter(arrayListOf())
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 recyclerView.context,
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         mainViewModel = ViewModelProviders.of(
             this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
+//            ViewModelFactory(ApiHelperImpl(RetrofitBuilder.apiService))
         ).get(MainViewModel::class.java)
     }
 }

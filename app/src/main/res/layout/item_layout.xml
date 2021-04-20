@@ -11,6 +11,7 @@
         android:layout_width="60dp"
         android:layout_height="0dp"
         android:padding="4dp"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="MindOrks" />
+        tools:text="Name" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewUserEmail"
@@ -35,6 +36,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textViewUserName"
         app:layout_constraintTop_toBottomOf="@+id/textViewUserName"
-        tools:text="MindOrks" />
+        tools:text="phone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

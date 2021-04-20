@@ -1,5 +1,7 @@
 package com.vuonghung.daggerhilt.data.api
 
-class ApiHelper(private val apiService: ApiService) {
-    suspend fun getUsers() = apiService.getUsers()
+import com.vuonghung.daggerhilt.data.model.User
+
+interface ApiHelper {
+    suspend fun getUsers():List<User>
 }
