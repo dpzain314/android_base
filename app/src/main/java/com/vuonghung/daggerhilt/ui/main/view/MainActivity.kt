@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vuonghung.daggerhilt.R
 import com.vuonghung.daggerhilt.data.api.ApiHelper
-import com.vuonghung.daggerhilt.data.api.ApiServiceImpl
+import com.vuonghung.daggerhilt.data.api.RetrofitBuilder
 import com.vuonghung.daggerhilt.data.model.User
 import com.vuonghung.daggerhilt.ui.base.ViewModelFactory
 import com.vuonghung.daggerhilt.ui.main.adapter.MainAdapter
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        mainViewModel.getUsers().observe(this, Observer {
+        mainViewModel.getUsers2().observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         mainViewModel = ViewModelProviders.of(
             this,
-            ViewModelFactory(ApiHelper(ApiServiceImpl()))
+            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
         ).get(MainViewModel::class.java)
     }
 }

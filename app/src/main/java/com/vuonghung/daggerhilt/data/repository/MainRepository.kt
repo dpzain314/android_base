@@ -5,5 +5,5 @@ import com.vuonghung.daggerhilt.data.model.User
 import io.reactivex.Single
 
 class MainRepository(private val apiHelper: ApiHelper) {
-    fun getUsers(): Single<List<User>> = apiHelper.getUsers()
+    suspend fun getUsers(): List<User> = apiHelper.getUsers()
 }

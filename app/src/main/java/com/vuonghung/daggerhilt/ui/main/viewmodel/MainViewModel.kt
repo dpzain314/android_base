@@ -1,43 +1,35 @@
 package com.vuonghung.daggerhilt.ui.main.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.vuonghung.daggerhilt.data.model.User
 import com.vuonghung.daggerhilt.data.repository.MainRepository
 import com.vuonghung.daggerhilt.utils.Resource
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel(){
     private val users = MutableLiveData<Resource<List<User>>>()
-    private val compositeDisposable = CompositeDisposable()
 
     init {
-        fetchUsers()
+        viewModelScope.launch {
+            try{
+                val data = async { mainRepository.getUsers()}
+                users.postValue(Resource.success(data.await()))
+            }catch (ex: Exception){
+                users.postValue(Resource.error("Something Went Wrong", null))
+            }
+        }
     }
 
-    private fun fetchUsers(){
-        users.postValue(Resource.loading(null))
-        compositeDisposable.add(
-            mainRepository.getUsers()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ userList ->
-                    users.postValue(Resource.success(userList))
-                }, {
-                    users.postValue(Resource.error("Something Went Wrong", null))
-                })
-        )
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.dispose()
-    }
-
+    //using liveData + emit : might need to calculate values asynchronously
     fun getUsers(): LiveData<Resource<List<User>>>{
-        return users
+        return liveData(Dispatchers.IO) {
+            emit(Resource.success(mainRepository.getUsers()))
+        }
     }
+
+    //using viewModelScope
+    fun getUsers2() = users
 }
