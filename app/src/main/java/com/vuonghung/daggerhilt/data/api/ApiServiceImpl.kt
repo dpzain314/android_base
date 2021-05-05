@@ -1,8 +1,6 @@
 package com.vuonghung.daggerhilt.data.api
 
-import com.rx2androidnetworking.Rx2AndroidNetworking
 import com.vuonghung.daggerhilt.data.model.User
-import io.reactivex.Single
 
 //class ApiServiceImpl: ApiService {
 //    override suspend fun getUsers(): List<User> {

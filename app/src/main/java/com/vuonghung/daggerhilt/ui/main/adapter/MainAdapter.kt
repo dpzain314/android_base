@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.vuonghung.daggerhilt.R
 import com.vuonghung.daggerhilt.data.model.User
 
@@ -21,9 +20,9 @@ class MainAdapter(
         fun bind(user: User) {
             textViewUserName.text = user.name
             textViewUserEmail.text = user.email
-            Glide.with(imageViewAvatar.context)
-                .load(user.avatar)
-                .into(imageViewAvatar)
+//            Glide.with(imageViewAvatar.context)
+//                .load(user.avatar)
+//                .into(imageViewAvatar)
         }
     }
 
