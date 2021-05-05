@@ -1,5 +1,7 @@
 package com.vuonghung.daggerhilt.data.api
 
-class ApiHelper(private val apiService: ApiService) {
+import javax.inject.Inject
+
+class ApiHelper @Inject constructor(private val apiService: ApiService) {
     suspend fun getUsers() = apiService.getUsers()
 }

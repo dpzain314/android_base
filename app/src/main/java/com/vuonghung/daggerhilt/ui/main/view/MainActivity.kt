@@ -5,22 +5,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vuonghung.daggerhilt.R
-import com.vuonghung.daggerhilt.data.api.ApiHelper
-import com.vuonghung.daggerhilt.data.api.RetrofitBuilder
 import com.vuonghung.daggerhilt.data.model.User
-import com.vuonghung.daggerhilt.ui.base.ViewModelFactory
 import com.vuonghung.daggerhilt.ui.main.adapter.MainAdapter
 import com.vuonghung.daggerhilt.ui.main.viewmodel.MainViewModel
 import com.vuonghung.daggerhilt.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModels()
     private lateinit var adapter: MainAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MainAdapter(arrayListOf())
+        adapter = MainAdapter(this,arrayListOf())
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 recyclerView.context,
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             when (it.status) {
                 Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
-                    it.data?.let { users -> renderList(users) }
+                    it.data?.let { users -> renderList(users.items!!) }
                     recyclerView.visibility = View.VISIBLE
                 }
                 Status.LOADING -> {
@@ -75,9 +74,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        mainViewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(MainViewModel::class.java)
+//        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 }
