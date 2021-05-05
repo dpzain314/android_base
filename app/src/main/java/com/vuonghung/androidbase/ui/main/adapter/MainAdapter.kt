@@ -18,11 +18,11 @@ class MainAdapter(
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewUserName: TextView = itemView.findViewById(R.id.textViewUserName)
-        private val textViewUserEmail: TextView = itemView.findViewById(R.id.textViewUserEmail)
+        private val textViewUserPhone: TextView = itemView.findViewById(R.id.textViewUserPhone)
         private val imageViewAvatar: ImageView = itemView.findViewById(R.id.imageViewAvatar)
         fun bind(user: User, context: Context) {
             textViewUserName.text = user.name
-            textViewUserEmail.text = user.email
+            textViewUserPhone.text = user.phone
             imageViewAvatar.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_launcher_foreground))
         }
     }
