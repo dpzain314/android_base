@@ -1,10 +1,10 @@
-package com.vuonghung.daggerhilt.ui.main.viewmodel
+package com.vuonghung.androidbase.ui.main.viewmodel
 
 import androidx.lifecycle.*
-import com.vuonghung.daggerhilt.data.model.BaseResponse
-import com.vuonghung.daggerhilt.data.model.User
-import com.vuonghung.daggerhilt.data.repository.MainRepository
-import com.vuonghung.daggerhilt.utils.Resource
+import com.vuonghung.androidbase.data.model.BaseResponse
+import com.vuonghung.androidbase.data.model.User
+import com.vuonghung.androidbase.data.repository.MainRepository
+import com.vuonghung.androidbase.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

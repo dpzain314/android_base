@@ -1,8 +1,8 @@
-package com.vuonghung.daggerhilt.di
+package com.vuonghung.androidbase.di
 
-import com.vuonghung.daggerhilt.data.api.ApiHelper
-import com.vuonghung.daggerhilt.data.api.ApiService
-import com.vuonghung.daggerhilt.data.repository.MainRepository
+import com.vuonghung.androidbase.data.api.ApiHelper
+import com.vuonghung.androidbase.data.api.ApiService
+import com.vuonghung.androidbase.data.repository.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

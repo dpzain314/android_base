@@ -1,4 +1,4 @@
-package com.vuonghung.daggerhilt
+package com.vuonghung.androidbase
 
 import org.junit.Test
 

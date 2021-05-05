@@ -1,4 +1,4 @@
-package com.vuonghung.daggerhilt.utils
+package com.vuonghung.androidbase.utils
 
 enum class Status {
     SUCCESS,

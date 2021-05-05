@@ -1,4 +1,4 @@
-package com.vuonghung.daggerhilt.ui.main.view
+package com.vuonghung.androidbase.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,11 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vuonghung.daggerhilt.R
-import com.vuonghung.daggerhilt.data.model.User
-import com.vuonghung.daggerhilt.ui.main.adapter.MainAdapter
-import com.vuonghung.daggerhilt.ui.main.viewmodel.MainViewModel
-import com.vuonghung.daggerhilt.utils.Status
+import com.vuonghung.androidbase.R
+import com.vuonghung.androidbase.data.model.User
+import com.vuonghung.androidbase.ui.main.adapter.MainAdapter
+import com.vuonghung.androidbase.ui.main.viewmodel.MainViewModel
+import com.vuonghung.androidbase.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

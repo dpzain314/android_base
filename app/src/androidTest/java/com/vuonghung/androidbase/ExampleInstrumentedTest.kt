@@ -1,4 +1,4 @@
-package com.vuonghung.daggerhilt
+package com.vuonghung.androidbase
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.vuonghung.daggerhilt.data.model
+package com.vuonghung.androidbase.data.model
 
 import com.google.gson.annotations.SerializedName
 

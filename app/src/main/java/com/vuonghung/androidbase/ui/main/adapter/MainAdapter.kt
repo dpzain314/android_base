@@ -1,4 +1,4 @@
-package com.vuonghung.daggerhilt.ui.main.adapter
+package com.vuonghung.androidbase.ui.main.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.vuonghung.daggerhilt.R
-import com.vuonghung.daggerhilt.data.model.User
+import com.vuonghung.androidbase.R
+import com.vuonghung.androidbase.data.model.User
 
 class MainAdapter(
     private val context : Context,

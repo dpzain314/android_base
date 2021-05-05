@@ -1,4 +1,4 @@
-package com.vuonghung.daggerhilt.data.api
+package com.vuonghung.androidbase.data.api
 
 import javax.inject.Inject
 
