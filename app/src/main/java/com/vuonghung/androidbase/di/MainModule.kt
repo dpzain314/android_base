@@ -1,11 +1,15 @@
 package com.vuonghung.androidbase.di
 
-import com.vuonghung.androidbase.data.api.ApiHelper
-import com.vuonghung.androidbase.data.api.ApiService
+import android.app.Application
+import android.content.Context
+import com.vuonghung.androidbase.data.remote.ApiHelper
+import com.vuonghung.androidbase.data.remote.ApiService
 import com.vuonghung.androidbase.data.repository.MainRepository
+import com.vuonghung.androidbase.utils.ConnectivityNetworkManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -16,6 +20,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object MainModule {
+
     @Provides
     fun provideBaseUrl() = "https://607e4fe902a23c0017e8b20a.mockapi.io/base_app/"
 

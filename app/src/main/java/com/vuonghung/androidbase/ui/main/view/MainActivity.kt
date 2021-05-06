@@ -1,5 +1,7 @@
 package com.vuonghung.androidbase.ui.main.view
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,7 +16,7 @@ import com.vuonghung.androidbase.R
 import com.vuonghung.androidbase.data.model.User
 import com.vuonghung.androidbase.ui.main.adapter.MainAdapter
 import com.vuonghung.androidbase.ui.main.viewmodel.MainViewModel
-import com.vuonghung.androidbase.utils.Status
+import com.vuonghung.androidbase.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,20 +26,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recyclerView = findViewById(R.id.rcview)
         progressBar = findViewById(R.id.progressBar1)
         setupUI()
-        setupViewModel()
         setupObserver()
     }
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MainAdapter(this,arrayListOf())
+        adapter = MainAdapter(this, arrayListOf())
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 recyclerView.context,
@@ -48,21 +48,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        mainViewModel.getUsers2().observe(this, Observer {
+        mainViewModel.listUsers.observe(this, Observer {
             when (it.status) {
-                Status.SUCCESS -> {
+                Resource.Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
                     it.data?.let { users -> renderList(users.items!!) }
                     recyclerView.visibility = View.VISIBLE
                 }
-                Status.LOADING -> {
+                Resource.Status.LOADING -> {
                     progressBar.visibility = View.VISIBLE
                     recyclerView.visibility = View.GONE
                 }
-                Status.ERROR -> {
-                    //Handle Error
+                Resource.Status.ERROR -> {
                     progressBar.visibility = View.GONE
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    AlertDialog.Builder(this)
+                        .setTitle(it.message)
+                        .setPositiveButton("OK") { p0, p1 -> }
+                        .show()
+//                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                 }
             }
         })
@@ -71,9 +74,5 @@ class MainActivity : AppCompatActivity() {
     private fun renderList(users: List<User>) {
         adapter.addData(users)
         adapter.notifyDataSetChanged()
-    }
-
-    private fun setupViewModel() {
-//        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 }
